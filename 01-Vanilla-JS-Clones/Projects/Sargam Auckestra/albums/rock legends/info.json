@@ -1,3 +1,9 @@
 {
-    "description" : "Classic rock anthems that energize and inspire."
+  "description": "High-energy rock anthems with powerful riffs and road-trip vibes.",
+  "songs": [
+    "burning skies.mp3",
+    "electric storm.mp3",
+    "highway rider.mp3",
+    "thunder road.mp3"
+  ]
 }

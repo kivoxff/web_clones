@@ -1,3 +1,10 @@
 {
-    "description" : "Chill electronic beats for late-night drives and city lights."
+  "description": "Chill late-night tracks inspired by neon lights and quiet city roads.",
+  "songs": [
+    "city lights.mp3",
+    "echoes of silence.mp3",
+    "moonlight drive.mp3",
+    "neon dreams.mp3",
+    "night walker.mp3"
+  ]
 }

@@ -25,8 +25,9 @@ const shuffle = document.querySelector('.shuffle');
 const search = document.querySelector('.search');
 const header = document.querySelector('header');
 
-const mainFolder = `/web_clones/01-Vanilla-JS-Clones/Projects/${encodeURIComponent("Sargam Auckestra")}`;
-const albumFolder = `${mainFolder}/albums/`;
+const mainFolder = './';
+const albumFolder = './albums';
+
 
 let currentSong = new Audio();
 let currSongEle;
@@ -121,34 +122,31 @@ setInterval(() => {
 }, 3000);
 
 
-async function getSongs(path) {
-    songs.innerHTML = '' // clear prev songs
+async function getSongs(albumPath) {
+    songs.innerHTML = '';
 
-    const response = await fetch(`${path}`);
-    const data = await response.text();
-    const tempNode = document.createElement('div');
-    tempNode.innerHTML = data;
-    const anchorTag = tempNode.querySelectorAll('a');
+    const res = await fetch(`${albumPath}/info.json`);
+    const info = await res.json();
 
-    for (const a of anchorTag) {
-        const href = a.getAttribute('href');
+    let firstSong = null;
 
-        if (href.endsWith('.mp3')) {
-            const songFullName = decodeURIComponent(href.slice(path.length));
-            const songName = songFullName.slice(0, songFullName.indexOf('.'));
+    for (const file of info.songs) {
+        const songName = file.replace('.mp3', '');
+        const songPath = `${albumPath}/${file}`;
 
-            const song = document.createElement('div');
-            song.className = 'song';
-            song.dataset.songName = songName;
-            song.dataset.songLink = href;
-            song.innerHTML = `  <span class="song-name">${songName}</span>
-                <button class="song-btn reset-btn play"></button>`
+        const song = document.createElement('div');
+        song.className = 'song';
+        song.dataset.songName = songName;
+        song.dataset.songLink = songPath;
+        song.innerHTML = `
+            <span class="song-name">${songName}</span>
+            <button class="song-btn reset-btn play"></button>
+        `;
 
-            songs.appendChild(song);
-        }
+        songs.appendChild(song);
+        if (!firstSong) firstSong = song;
     }
 
-    const firstSong = document.querySelector('.song');
     if (firstSong) {
         currSongEle = firstSong;
         currentSong.src = firstSong.dataset.songLink;
@@ -156,9 +154,10 @@ async function getSongs(path) {
         frontLine.style.width = 0;
         circle.style.left = 0;
     }
-    playBtn.classList.remove('pause');
 
+    playBtn.classList.remove('pause');
 }
+
 
 async function getDesc(path) {
     const response = await fetch(`${path}/info.json`);
@@ -178,45 +177,46 @@ async function imageExists(url) {
     }
 }
 
-(async function getAlbums() {
-    const response = await fetch(albumFolder);
-    const albumHtml = await response.text();
-    const tempNode = document.createElement('div');
-    tempNode.innerHTML = albumHtml;
+async function getAlbums() {
+    albumCards.innerHTML = '';
 
-    const anchorTag = tempNode.querySelectorAll('a');
+    const res = await fetch(`${albumFolder}/albums.json`);
+    const data = await res.json();
 
+    for (const albumName of data.albums) {
+        const albumPath = `${albumFolder}/${albumName}`;
 
-    for (const a of anchorTag) {
-        const href = a.getAttribute('href');
+        const infoRes = await fetch(`${albumPath}/info.json`);
+        const info = await infoRes.json();
 
-        if (href.startsWith(albumFolder)) {
-            const albumName = decodeURIComponent(href.slice(albumFolder.length));
-
-            const desc = await getDesc(href); // description
-            let cardImg = href + '/Sargam.png';
-            if (!(await imageExists(cardImg))) {
-                cardImg = `${mainFolder}/images-icons/Sargam.png`;
-            }
-
-
-            const card = document.createElement('div');
-            card.className = 'album-card';
-            card.dataset.albumLink = href + '/';
-            card.innerHTML = `  <img src="${cardImg}" alt="Album Cover" class="album-img">
-                <div class="album-content">
-                <h2 class="album-title">${albumName}</h2>
-                <p class="album-desc">${desc}</p>
-                </div>`
-
-            albumCards.appendChild(card);
+        let cardImg = `${albumPath}/Sargam.png`;
+        if (!(await imageExists(cardImg))) {
+            cardImg = `./images-icons/Sargam.png`;
         }
+
+        const card = document.createElement('div');
+        card.className = 'album-card';
+        card.dataset.albumLink = albumPath;
+        card.innerHTML = `
+            <img src="${cardImg}" class="album-img">
+            <div class="album-content">
+                <h2 class="album-title">${albumName}</h2>
+                <p class="album-desc">${info.description}</p>
+            </div>
+        `;
+
+        albumCards.appendChild(card);
     }
 
     const firstAlbum = document.querySelector('.album-card');
-    if (firstAlbum) await getSongs(firstAlbum.dataset.albumLink);
+    if (firstAlbum) {
+        await getSongs(firstAlbum.dataset.albumLink);
+        trackSong(currSongEle);
+    }
+}
 
-})();
+getAlbums();
+
 
 hamBurgur.addEventListener('click', () => leftSection.classList.toggle('open'));
 
@@ -351,8 +351,4 @@ search.addEventListener('input', () => {
         const name = song.dataset.songName.toLowerCase();
         song.style.display = name.includes(value) ? "flex" : "none";
     });
-
 });
-
-
-
