@@ -20,7 +20,7 @@ export default function FlappyFly() {
   })
 
   const [pipes, setPipes] = useState([]);
-  const [charSrc, setCharSrc] = useState('../images-icons/fish.png');
+  const [charSrc, setCharSrc] = useState('./images-icons/fish.png');
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(parseInt(localStorage.getItem('score')) || 0);
   const [gameOver, setGameOver] = useState(false);
@@ -285,7 +285,7 @@ export default function FlappyFly() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="h-2/3 bg-[url(/images-icons/bg.png)] bg-cover relative overflow-hidden" style={{ width: `${dimensions.current.width}px`, height: `${dimensions.current.height}px` }}>
+      <div className="h-2/3 bg-[url(../images-icons/bg.png)] bg-cover relative overflow-hidden" style={{ width: `${dimensions.current.width}px`, height: `${dimensions.current.height}px` }}>
 
         {!startOfGame && (
           <>
