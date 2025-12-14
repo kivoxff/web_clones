@@ -8,9 +8,9 @@ import GameStartDisplay from "./components/GameStartDisplay";
 function App() {
   // Audio references - created once and reused via cloneNode() to allow overlapping sound effects
   const eat = useRef(new Audio('/sound-effects/eat.mp3'));
-  const gameStart = useRef(new Audio('/sound-effects/game-start.mp3'));
-  const gameOver = useRef(new Audio('/sound-effects/game-over.mp3'));
-  const changeDir = useRef(new Audio('/sound-effects/change-dir.mp3'));
+  const gameStart = useRef(new Audio('./sound-effects/game-start.mp3'));
+  const gameOver = useRef(new Audio('./sound-effects/game-over.mp3'));
+  const changeDir = useRef(new Audio('./sound-effects/change-dir.mp3'));
 
   // Initialize snake at a random position in the center area (rows 6-10, cols 6-10) to avoid starting near walls
   const [snakeBody, setSnakeBody] = useState([
