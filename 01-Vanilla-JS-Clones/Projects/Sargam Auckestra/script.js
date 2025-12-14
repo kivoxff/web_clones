@@ -189,7 +189,7 @@ async function getAlbums() {
         const infoRes = await fetch(`${albumPath}/info.json`);
         const info = await infoRes.json();
 
-        let cardImg = `${albumPath}/Sargam.png`;
+        let cardImg = `${albumPath}/sargam.png`;
         if (!(await imageExists(cardImg))) {
             cardImg = `./images-icons/Sargam.png`;
         }
@@ -209,10 +209,7 @@ async function getAlbums() {
     }
 
     const firstAlbum = document.querySelector('.album-card');
-    if (firstAlbum) {
-        await getSongs(firstAlbum.dataset.albumLink);
-        trackSong(currSongEle);
-    }
+    if (firstAlbum) await getSongs(firstAlbum.dataset.albumLink);
 }
 
 getAlbums();
