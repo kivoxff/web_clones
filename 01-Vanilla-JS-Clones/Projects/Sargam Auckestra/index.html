@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="RohitxThakare">
+    <title>Sargam Auckestra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-left">
+                <button class="hamburger reset-btn"><img src="images-icons/hamburger.svg" alt="hamburger"></button>
+                <img src="images-icons/logo.svg" alt="logo">
+            </div>
+            <div class="header-right">
+                <input type="text" class="search">
+            </div>
+        </header>
+
+        <section class="left-section">
+            <h1>Songs</h1>
+            <div class="songs"></div>
+        </section>
+
+        <section class="right-section">
+            <h1>Albums</h1>
+            <div class="album-cards"></div>
+
+            <div class="song-player">
+                <h2 class="song-title">Song Title</h2>
+                <div class="seek-bar">
+                    <div class="circle"></div>
+                    <hr class="back-line">
+                    <hr class="front-line">
+                </div>
+
+                <div class="song-duration">
+                    <span class="curr-duration">0:00</span>
+                    <span class="total-duration">0:00</span>
+                </div>
+
+                <!-- Main playback buttons -->
+                <div class="song-controls">
+                    <button class="prev-btn reset-btn"></button>
+                    <button class="play-btn reset-btn play"></button>
+                    <button class="next-btn reset-btn"></button>
+                </div>
+
+                <div class="other-controls">
+                    <!-- Additional buttons -->
+                    <div class="track-control">
+                        <button class="shuffle reset-btn"></button>
+                        <button class="loop reset-btn"></button>
+                    </div>
+
+                    <!-- Volume control -->
+                    <div class="volume-control">
+                        <button class="volume-btn reset-btn"></button>
+                        <input class="volume-bar" type="range" min="0" max="100" value="50">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

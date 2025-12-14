@@ -1,0 +1,58 @@
+<svg width="2000" height="1125" viewBox="0 0 2000 1125" xmlns="http://www.w3.org/2000/svg" style="background-color:#141414;">
+
+  <defs>
+    <style>
+      .p1 { fill: #E50914; } /* Netflix Red */
+      .p2 { fill: #335b9a; } /* Blue */
+      .p3 { fill: #d1a03d; } /* Gold */
+      .p4 { fill: #5a8e45; } /* Green */
+      .p5 { fill: #8a3d9e; } /* Purple */
+    </style>
+    
+
+    <g id="poster">
+      <rect width="220" height="330" rx="6" ry="6" />
+    </g>
+  </defs>
+
+  <rect width="2000" height="1125" fill="url(#bgFade)" />
+
+  <g id="Row-1" transform="translate(0, 40)">
+    <use href="#poster" x="0" class="p1" />
+    <use href="#poster" x="240" class="p2" />
+    <use href="#poster" x="480" class="p3" />
+    <use href="#poster" x="720" class="p4" />
+    <use href="#poster" x="960" class="p5" />
+    <use href="#poster" x="1200" class="p1" />
+    <use href="#poster" x="1440" class="p2" />
+    <use href="#poster" x="1680" class="p3" />
+    <use href="#poster" x="1920" class="p4" /> </g>
+
+  <g id="Row-2" transform="translate(-120, 395)">
+    <use href="#poster" x="0" class="p3" />
+    <use href="#poster" x="240" class="p4" />
+    <use href="#poster" x="480" class="p5" />
+    <use href="#poster" x="720" class="p1" />
+    <use href="#poster" x="960" class="p2" />
+    <use href="#poster" x="1200" class="p3" />
+    <use href="#poster" x="1440" class="p4" />
+    <use href="#poster" x="1680" class="p5" />
+    <use href="#poster" x="1920" class="p1" />
+  </g>
+  
+  <g id="Row-3" transform="translate(0, 750)">
+    <use href="#poster" x="0" class="p5" />
+    <use href="#poster" x="240" class="p1" />
+    <use href="#poster" x="480" class="p2" />
+    <use href="#poster" x="720" class="p3" />
+    <use href="#poster" x="960" class="p4" />
+    <use href="#poster" x="1200" class="p5" />
+    <use href="#poster" x="1440" class="p1" />
+    <use href="#poster" x="1680" class="p2" />
+    <use href="#poster" x="1920" class="p3" />
+  </g>
+  
+  <rect width="2000" height="1125" fill="url(#vignette-left)" />
+  <rect width="2000" height="1125" fill="url(#vignette-right)" />
+
+</svg>
