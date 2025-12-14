@@ -25,7 +25,7 @@ const shuffle = document.querySelector('.shuffle');
 const search = document.querySelector('.search');
 const header = document.querySelector('header');
 
-const mainFolder = `/01-Vanilla-JS-Clones/Projects/${encodeURIComponent("Sargam Auckestra")}`;
+const mainFolder = `web_clones/01-Vanilla-JS-Clones/Projects/${encodeURIComponent("Sargam Auckestra")}`;
 const albumFolder = `${mainFolder}/albums/`;
 
 let currentSong = new Audio();
@@ -351,4 +351,5 @@ search.addEventListener('input', () => {
         const name = song.dataset.songName.toLowerCase();
         song.style.display = name.includes(value) ? "flex" : "none";
     });
+
 });
