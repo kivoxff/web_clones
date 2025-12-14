@@ -25,7 +25,7 @@ const shuffle = document.querySelector('.shuffle');
 const search = document.querySelector('.search');
 const header = document.querySelector('header');
 
-const mainFolder = `/web_clones/01-Vanilla-JS-Clones/Projects/${encodeURIComponent("Sargam Auckestra")}`;
+const mainFolder = `./`;
 const albumFolder = `${mainFolder}/albums/`;
 
 let currentSong = new Audio();
@@ -353,4 +353,5 @@ search.addEventListener('input', () => {
     });
 
 });
+
 
